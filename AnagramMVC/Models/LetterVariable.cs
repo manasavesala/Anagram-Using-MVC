@@ -8,7 +8,7 @@ namespace AnagramMVC.Models
   public class Anagram
   {
     private string _word;
-    private string[] _words;
+    private string _words;
 
     public string GetWord()
     {
@@ -20,35 +20,33 @@ namespace AnagramMVC.Models
       _word = newWord;
     }
 
-    public string[] GetWords()
+    public string GetWords()
     {
       return _words;
     }
 
-    public void SetWords(string[] newWords)
+    public void SetWords(string newWords)
     {
       _words = newWords;
     }
 
-    public string[] GetAnagrams(string word, string[] words)
+    public string[] GetAnagrams()
     {
-      word =GetWord();
-      words = GetWords();
-      word = InOrder(word);
-      List<string> anagrams = new List<string>();
-      for(int i=0; i < words.Length; i++)
-      {
-        var sortedWord = InOrder(words[i]);
+      string[] _words1 = _words.Split();
+      _word = InOrder(_word);
 
-        if(word.Equals(sortedWord))
+      List<string> anagrams = new List<string>();
+      for(int i=0; i < _words1.Length; i++)
+      {
+        var sortedWord = InOrder(_words1[i]);
+
+        if(_word.Equals(sortedWord))
         {
-          anagrams.Add(words[i]);
+          anagrams.Add(_words1[i]);
         }
       }
-
-      // List<string> --> string[]
-      // List<int> --> int[]
-      return anagrams.ToArray();
+      string[] output = anagrams.ToArray();
+      return output;
     }
 
     public string InOrder(string word)

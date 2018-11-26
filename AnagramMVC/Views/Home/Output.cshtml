@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Result!</title>
+    <title>Hello Friend!</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
   </head>
   <body>
+    <p>Here are your results</p>
     <p>Word Entered: @Model.GetWord()</p>
-    <p>Anagram Words: @Model.GetAnagrams()</p>
-
+    <p>Anagram Words:</p>
+    <ul>
+      @foreach (string result in Model.GetAnagrams())
+      {
+        <li>@result</li>
+      }
+    </ul>
   </body>
 </html>
